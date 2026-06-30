@@ -4,15 +4,23 @@
  */
 package VIEW;
 
+import MODELO.ListaNumeros;
+import MODELO.Numero;
+import MODELO.Quicksort;
+import MODELO.Shellsort;
 import java.awt.Color;
+import java.io.File;
 import javax.swing.BorderFactory;
-
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import MODELO.Txt_utp;
 /**
  *
  * @author darwi
  */
 public class PREGUNTA_1 extends javax.swing.JFrame {
-
+private ListaNumeros lista = new ListaNumeros();
     /**
      * Creates new form PREGUNTA_1
      */
@@ -30,10 +38,11 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
         pre1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtarchivo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnarchiv = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -48,9 +57,12 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaoriginal = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtresultado = new javax.swing.JTextArea();
         btnmenu = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btnanalis = new javax.swing.JButton();
+
+        jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +94,7 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jTextField1.setEditable(false);
+        txtarchivo.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(java.awt.SystemColor.activeCaptionText);
@@ -223,7 +235,7 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                                 .addComponent(rbtshell, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(rtbquic, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField1))
+                            .addComponent(txtarchivo))
                         .addGap(28, 28, 28)
                         .addGroup(pre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnlimp1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,7 +249,7 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnarchiv, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -250,7 +262,7 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                 .addGroup(pre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
                 .addComponent(btnlimp1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -285,13 +297,13 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaoriginal);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(java.awt.SystemColor.activeCaption);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        txtresultado.setEditable(false);
+        txtresultado.setBackground(java.awt.SystemColor.activeCaption);
+        txtresultado.setColumns(20);
+        txtresultado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtresultado.setForeground(new java.awt.Color(0, 0, 0));
+        txtresultado.setRows(5);
+        jScrollPane3.setViewportView(txtresultado);
 
         btnmenu.setBackground(new java.awt.Color(0, 0, 0));
         btnmenu.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
@@ -324,6 +336,33 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
         jLabel6.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel6.setText("RESULTADOS");
 
+        btnanalis.setBackground(new java.awt.Color(0, 0, 0));
+        btnanalis.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnanalis.setForeground(java.awt.Color.black);
+        btnanalis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/ANALSIS_ORI.png"))); // NOI18N
+        btnanalis.setText("ANALISIS");
+        btnanalis.setAutoscrolls(true);
+        btnanalis.setContentAreaFilled(false);
+        btnanalis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnanalis.setDoubleBuffered(true);
+        btnanalis.setFocusCycleRoot(true);
+        btnanalis.setFocusPainted(false);
+        btnanalis.setFocusable(false);
+        btnanalis.setVerifyInputWhenFocusTarget(false);
+        btnanalis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnanalisMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnanalisMouseExited(evt);
+            }
+        });
+        btnanalis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnanalisbtnpregun1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -332,16 +371,20 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnanalis, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,13 +398,18 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnanalis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -389,6 +437,51 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
 
     private void btnarchivbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnarchivbtnpregun1ActionPerformed
         // TODO add your handling code here:
+          JFileChooser fc = new JFileChooser();
+
+    int opcion = fc.showOpenDialog(this);
+
+    if (opcion == JFileChooser.APPROVE_OPTION) {
+
+        File archivo = fc.getSelectedFile();
+
+        txtarchivo.setText(archivo.getAbsolutePath());
+
+        try {
+
+            Txt_utp.cargarArchivo(
+                    archivo.getAbsolutePath(),
+                    lista
+            );
+
+            DefaultTableModel modelo =
+                    (DefaultTableModel) tablaoriginal.getModel();
+
+            modelo.setRowCount(0);
+
+            for (Numero n : lista.getLista()) {
+
+                modelo.addRow(new Object[]{
+                    n.getValor()
+                });
+
+            }
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Archivo cargado correctamente."
+            );
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al cargar el archivo.\n" + e.getMessage()
+            );
+
+        }
+
+    }
     }//GEN-LAST:event_btnarchivbtnpregun1ActionPerformed
 
     private void rbtshellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtshellActionPerformed
@@ -439,6 +532,80 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
 
     private void btnordenbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnordenbtnpregun1ActionPerformed
         // TODO add your handling code here:
+         if (lista.tamaño() == 0) {
+        JOptionPane.showMessageDialog(this,
+                "Primero cargue un archivo.");
+        return;
+    }
+
+    DefaultTableModel modelo =
+            (DefaultTableModel) tablaordenado.getModel();
+
+    modelo.setRowCount(0);
+
+    long inicio = System.nanoTime();
+
+    if (rbtshell.isSelected()) {
+
+        Shellsort shell = new Shellsort();
+
+        shell.ordenar(lista.getLista());
+
+        long fin = System.nanoTime();
+
+        for (Numero n : lista.getLista()) {
+
+            modelo.addRow(new Object[]{
+                n.getValor()
+            });
+
+        }
+
+        txtresultado.setText(
+        "ALGORITMO: SHELL SORT\n\n" +
+        "Tiempo: " + (fin - inicio) + " ns\n" +
+        "Comparaciones: " + shell.getComparaciones() + "\n" +
+        "Intercambios: " + shell.getIntercambios() + "\n\n" +
+        "Complejidad:\n" +
+        "Mejor caso: O(n log n)\n" +
+        "Caso promedio: Depende de la secuencia\n" +
+        "Peor caso: O(n²)"
+);
+
+    } else if (rtbquic.isSelected()) {
+
+        Quicksort quick = new Quicksort();
+
+        quick.ordenar(lista.getLista());
+
+        long fin = System.nanoTime();
+
+        for (Numero n : lista.getLista()) {
+
+            modelo.addRow(new Object[]{
+                n.getValor()
+            });
+
+        }
+
+       txtresultado.setText(
+        "ALGORITMO: QUICK SORT\n\n" +
+        "Tiempo: " + (fin - inicio) + " ns\n" +
+        "Comparaciones: " + quick.getComparaciones() + "\n" +
+        "Intercambios: " + quick.getIntercambios() + "\n\n" +
+        "Complejidad:\n" +
+        "Mejor caso: O(n log n)\n" +
+        "Promedio: O(n log n)\n" +
+        "Peor caso: O(n²)"
+);
+
+    } else {
+
+        JOptionPane.showMessageDialog(this,
+                "Seleccione un algoritmo.");
+
+    }
+
     }//GEN-LAST:event_btnordenbtnpregun1ActionPerformed
 
     private void btnlimp1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimp1MouseEntered
@@ -459,8 +626,29 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
 
     private void btnlimp1btnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimp1btnpregun1ActionPerformed
         // TODO add your handling code here:
+       txtarchivo.setText("");
+       txtresultado.setText("");
         
     }//GEN-LAST:event_btnlimp1btnpregun1ActionPerformed
+
+    private void btnanalisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnanalisMouseEntered
+        // TODO add your handling code here:
+            btnanalis.setBorder(
+    BorderFactory.createLineBorder(
+        new Color(0,0,0),2
+    )
+            );
+             btnanalis.setBackground(new Color(45,45,45));
+    }//GEN-LAST:event_btnanalisMouseEntered
+
+    private void btnanalisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnanalisMouseExited
+        // TODO add your handling code here:
+              btnanalis.setBorder(null);
+    }//GEN-LAST:event_btnanalisMouseExited
+
+    private void btnanalisbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnanalisbtnpregun1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnanalisbtnpregun1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,6 +656,7 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnanalis;
     private javax.swing.JButton btnarchiv;
     private javax.swing.JButton btnlimp1;
     private javax.swing.JButton btnmenu;
@@ -478,17 +667,18 @@ public class PREGUNTA_1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pre1;
     private javax.swing.JRadioButton rbtshell;
     private javax.swing.JRadioButton rtbquic;
     private javax.swing.JTable tablaordenado;
     private javax.swing.JTable tablaoriginal;
+    private javax.swing.JTextField txtarchivo;
+    private javax.swing.JTextArea txtresultado;
     // End of variables declaration//GEN-END:variables
 }

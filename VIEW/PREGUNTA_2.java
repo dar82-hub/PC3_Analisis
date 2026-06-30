@@ -4,15 +4,27 @@
  */
 package VIEW;
 
+import MODELO.Busqueda_binaria;
+import MODELO.Busqueda_lineal;
+import MODELO.ListaNumeros;
+import MODELO.Numero;
+import MODELO.ListaNumeros;
 import java.awt.Color;
 import javax.swing.BorderFactory;
-
+import java.io.File;
+import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import MODELO.Txt_utp;
+import java.util.ArrayList;
 /**
  *
  * @author darwi
  */
 public class PREGUNTA_2 extends javax.swing.JFrame {
-
+    private ListaNumeros lista = new ListaNumeros();
+private Txt_utp txt = new Txt_utp();
     /**
      * Creates new form PREGUNTA_2
      */
@@ -37,23 +49,23 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtbuscar = new javax.swing.JTextField();
         btnarchiv = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        rbtshell = new javax.swing.JRadioButton();
-        rtbquic = new javax.swing.JRadioButton();
-        rtbquic1 = new javax.swing.JRadioButton();
-        btnorden = new javax.swing.JButton();
-        btnlimp1 = new javax.swing.JButton();
+        txtarchivo = new javax.swing.JTextField();
+        rbtlineal = new javax.swing.JRadioButton();
+        rbtcomparar = new javax.swing.JRadioButton();
+        rbtinaria = new javax.swing.JRadioButton();
+        btnbuscar = new javax.swing.JButton();
+        btnlimpiar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabladerecho = new javax.swing.JTable();
-        jTextField3 = new javax.swing.JTextField();
+        tablalineal = new javax.swing.JTable();
+        txtresultado = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabladerecho1 = new javax.swing.JTable();
+        tablabinaria = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -141,9 +153,7 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
         jLabel3.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel3.setText("ARCHIVO:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 111, 34));
-
-        jTextField1.setEditable(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 240, 30));
+        jPanel1.add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 240, 30));
 
         btnarchiv.setBackground(new java.awt.Color(0, 0, 0));
         btnarchiv.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -178,94 +188,94 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
         jLabel4.setText("BUSCAR");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 70, 34));
 
-        jTextField2.setEditable(false);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 390, 30));
+        txtarchivo.setEditable(false);
+        jPanel1.add(txtarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 390, 30));
 
-        rbtshell.setBackground(new java.awt.Color(0, 0, 0));
-        rbtshell.setForeground(java.awt.SystemColor.inactiveCaption);
-        rbtshell.setText("LINEAL");
-        rbtshell.addActionListener(new java.awt.event.ActionListener() {
+        rbtlineal.setBackground(new java.awt.Color(0, 0, 0));
+        rbtlineal.setForeground(java.awt.SystemColor.inactiveCaption);
+        rbtlineal.setText("LINEAL");
+        rbtlineal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtshellActionPerformed(evt);
+                rbtlinealActionPerformed(evt);
             }
         });
-        jPanel1.add(rbtshell, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 129, -1));
+        jPanel1.add(rbtlineal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 129, -1));
 
-        rtbquic.setBackground(new java.awt.Color(0, 0, 0));
-        rtbquic.setForeground(java.awt.SystemColor.inactiveCaption);
-        rtbquic.setText("COMPARAR");
-        rtbquic.addActionListener(new java.awt.event.ActionListener() {
+        rbtcomparar.setBackground(new java.awt.Color(0, 0, 0));
+        rbtcomparar.setForeground(java.awt.SystemColor.inactiveCaption);
+        rbtcomparar.setText("COMPARAR");
+        rbtcomparar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rtbquicActionPerformed(evt);
+                rbtcompararActionPerformed(evt);
             }
         });
-        jPanel1.add(rtbquic, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 129, -1));
+        jPanel1.add(rbtcomparar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 129, -1));
 
-        rtbquic1.setBackground(new java.awt.Color(0, 0, 0));
-        rtbquic1.setForeground(java.awt.SystemColor.inactiveCaption);
-        rtbquic1.setText("BINARIA");
-        rtbquic1.addActionListener(new java.awt.event.ActionListener() {
+        rbtinaria.setBackground(new java.awt.Color(0, 0, 0));
+        rbtinaria.setForeground(java.awt.SystemColor.inactiveCaption);
+        rbtinaria.setText("BINARIA");
+        rbtinaria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rtbquic1ActionPerformed(evt);
+                rbtinariaActionPerformed(evt);
             }
         });
-        jPanel1.add(rtbquic1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 129, -1));
+        jPanel1.add(rbtinaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 129, -1));
 
-        btnorden.setBackground(new java.awt.Color(0, 0, 0));
-        btnorden.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnorden.setForeground(java.awt.Color.black);
-        btnorden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/BUSCA_ORIGINAL.png"))); // NOI18N
-        btnorden.setText("BUSCAR");
-        btnorden.setAutoscrolls(true);
-        btnorden.setContentAreaFilled(false);
-        btnorden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnorden.setDoubleBuffered(true);
-        btnorden.setFocusCycleRoot(true);
-        btnorden.setFocusPainted(false);
-        btnorden.setFocusable(false);
-        btnorden.setVerifyInputWhenFocusTarget(false);
-        btnorden.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnbuscar.setBackground(new java.awt.Color(0, 0, 0));
+        btnbuscar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnbuscar.setForeground(java.awt.Color.black);
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/BUSCA_ORIGINAL.png"))); // NOI18N
+        btnbuscar.setText("BUSCAR");
+        btnbuscar.setAutoscrolls(true);
+        btnbuscar.setContentAreaFilled(false);
+        btnbuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnbuscar.setDoubleBuffered(true);
+        btnbuscar.setFocusCycleRoot(true);
+        btnbuscar.setFocusPainted(false);
+        btnbuscar.setFocusable(false);
+        btnbuscar.setVerifyInputWhenFocusTarget(false);
+        btnbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnordenMouseEntered(evt);
+                btnbuscarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnordenMouseExited(evt);
+                btnbuscarMouseExited(evt);
             }
         });
-        btnorden.addActionListener(new java.awt.event.ActionListener() {
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnordenbtnpregun1ActionPerformed(evt);
+                btnbuscarbtnpregun1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnorden, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 140, 46));
+        jPanel1.add(btnbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 140, 46));
 
-        btnlimp1.setBackground(new java.awt.Color(0, 0, 0));
-        btnlimp1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnlimp1.setForeground(java.awt.Color.black);
-        btnlimp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/CLEAN.png"))); // NOI18N
-        btnlimp1.setText("LIMPIAR");
-        btnlimp1.setAutoscrolls(true);
-        btnlimp1.setContentAreaFilled(false);
-        btnlimp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnlimp1.setDoubleBuffered(true);
-        btnlimp1.setFocusCycleRoot(true);
-        btnlimp1.setFocusPainted(false);
-        btnlimp1.setFocusable(false);
-        btnlimp1.setVerifyInputWhenFocusTarget(false);
-        btnlimp1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnlimpiar.setBackground(new java.awt.Color(0, 0, 0));
+        btnlimpiar.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnlimpiar.setForeground(java.awt.Color.black);
+        btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/CLEAN.png"))); // NOI18N
+        btnlimpiar.setText("LIMPIAR");
+        btnlimpiar.setAutoscrolls(true);
+        btnlimpiar.setContentAreaFilled(false);
+        btnlimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlimpiar.setDoubleBuffered(true);
+        btnlimpiar.setFocusCycleRoot(true);
+        btnlimpiar.setFocusPainted(false);
+        btnlimpiar.setFocusable(false);
+        btnlimpiar.setVerifyInputWhenFocusTarget(false);
+        btnlimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnlimp1MouseEntered(evt);
+                btnlimpiarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnlimp1MouseExited(evt);
+                btnlimpiarMouseExited(evt);
             }
         });
-        btnlimp1.addActionListener(new java.awt.event.ActionListener() {
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlimp1btnpregun1ActionPerformed(evt);
+                btnlimpiarbtnpregun1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnlimp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 163, 46));
+        jPanel1.add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 163, 46));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(java.awt.SystemColor.activeCaptionText);
@@ -273,9 +283,9 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
 
         jPanel2.setBackground(java.awt.SystemColor.activeCaption);
 
-        tabladerecho.setBackground(java.awt.SystemColor.activeCaptionText);
-        tabladerecho.setForeground(new java.awt.Color(255, 255, 255));
-        tabladerecho.setModel(new javax.swing.table.DefaultTableModel(
+        tablalineal.setBackground(java.awt.SystemColor.activeCaptionText);
+        tablalineal.setForeground(new java.awt.Color(255, 255, 255));
+        tablalineal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -286,7 +296,7 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
                 "DATOS"
             }
         ));
-        jScrollPane2.setViewportView(tabladerecho);
+        jScrollPane2.setViewportView(tablalineal);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -305,16 +315,16 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(java.awt.SystemColor.activeCaption);
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        txtresultado.setEditable(false);
+        txtresultado.setBackground(java.awt.SystemColor.activeCaption);
+        txtresultado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtresultado.setForeground(new java.awt.Color(0, 0, 0));
 
         jPanel3.setBackground(java.awt.SystemColor.activeCaption);
 
-        tabladerecho1.setBackground(java.awt.SystemColor.activeCaptionText);
-        tabladerecho1.setForeground(new java.awt.Color(255, 255, 255));
-        tabladerecho1.setModel(new javax.swing.table.DefaultTableModel(
+        tablabinaria.setBackground(java.awt.SystemColor.activeCaptionText);
+        tablabinaria.setForeground(new java.awt.Color(255, 255, 255));
+        tablabinaria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -325,7 +335,7 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
                 "DATOS"
             }
         ));
-        jScrollPane3.setViewportView(tabladerecho1);
+        jScrollPane3.setViewportView(tablabinaria);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -356,7 +366,7 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
             .addGroup(pre1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pre1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField3)
+                    .addComponent(txtresultado)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
@@ -382,7 +392,7 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
                     .addGroup(pre1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3))
+                        .addComponent(txtresultado))
                     .addGroup(pre1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -423,59 +433,214 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
 
     private void btnarchivbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnarchivbtnpregun1ActionPerformed
         // TODO add your handling code here:
+         JFileChooser selector = new JFileChooser();
+
+    int opcion = selector.showOpenDialog(this);
+
+    if (opcion == JFileChooser.APPROVE_OPTION) {
+
+        try {
+
+            File archivo = selector.getSelectedFile();
+
+            txtarchivo.setText(archivo.getAbsolutePath());
+
+            Txt_utp.cargarArchivo(archivo.getAbsolutePath(), lista);
+
+            DefaultTableModel modeloLineal =
+                    (DefaultTableModel) tablalineal.getModel();
+
+            DefaultTableModel modeloBinaria =
+                    (DefaultTableModel) tablabinaria.getModel();
+
+            modeloLineal.setRowCount(0);
+            modeloBinaria.setRowCount(0);
+
+            for (Numero n : lista.getLista()) {
+
+                Object[] fila = {
+                    n.getValor()
+                };
+
+                modeloLineal.addRow(fila);
+                modeloBinaria.addRow(fila);
+
+            }
+
+            txtresultado.setText("");
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Archivo cargado correctamente."
+            );
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al cargar el archivo.\n" + e.getMessage()
+            );
+
+        }
+
+    }
     }//GEN-LAST:event_btnarchivbtnpregun1ActionPerformed
 
-    private void rbtshellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtshellActionPerformed
+    private void rbtlinealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtlinealActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbtshellActionPerformed
+    }//GEN-LAST:event_rbtlinealActionPerformed
 
-    private void rtbquicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtbquicActionPerformed
+    private void rbtcompararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtcompararActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rtbquicActionPerformed
+    }//GEN-LAST:event_rbtcompararActionPerformed
 
-    private void btnordenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnordenMouseEntered
+    private void btnbuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbuscarMouseEntered
         // TODO add your handling code here:
-        btnorden.setBorder(
+        btnbuscar.setBorder(
             BorderFactory.createLineBorder(
                 new Color(0,0,0),2
             )
         );
-        btnorden.setBackground(new Color(45,45,45));
-    }//GEN-LAST:event_btnordenMouseEntered
+        btnbuscar.setBackground(new Color(45,45,45));
+    }//GEN-LAST:event_btnbuscarMouseEntered
 
-    private void btnordenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnordenMouseExited
+    private void btnbuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbuscarMouseExited
         // TODO add your handling code here:
-        btnorden.setBorder(null);
-    }//GEN-LAST:event_btnordenMouseExited
+        btnbuscar.setBorder(null);
+    }//GEN-LAST:event_btnbuscarMouseExited
 
-    private void btnordenbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnordenbtnpregun1ActionPerformed
+    private void btnbuscarbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarbtnpregun1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnordenbtnpregun1ActionPerformed
+         if (lista.getLista().isEmpty()) {
 
-    private void btnlimp1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimp1MouseEntered
+        JOptionPane.showMessageDialog(this,
+                "Primero cargue un archivo.");
+
+        return;
+    }
+
+    if (txtbuscar.getText().trim().isEmpty()) {
+
+        JOptionPane.showMessageDialog(this,
+                "Ingrese el número a buscar.");
+
+        return;
+    }
+    int numero = Integer.parseInt(txtbuscar.getText());
+
+    if (rbtlineal.isSelected()) {
+
+        Busqueda_lineal lineal = new Busqueda_lineal();
+
+        lineal.buscar(lista.getLista(), numero);
+
+        DefaultTableModel modelo =
+                (DefaultTableModel) tablalineal.getModel();
+
+        modelo.setRowCount(0);
+
+        modelo.addRow(new Object[]{
+            numero,
+            lineal.isEncontrado() ? "SI" : "NO",
+            lineal.getPosicion(),
+            lineal.getComparaciones(),
+            lineal.getTiempo() + " ns"
+        });
+
+    }
+
+   
+
+    else if (rbtinaria.isSelected()) {
+
+       Busqueda_binaria binaria = new Busqueda_binaria();
+
+        binaria.buscar(lista.getLista(), numero);
+
+        DefaultTableModel modelo =
+                (DefaultTableModel) tablabinaria.getModel();
+
+        modelo.setRowCount(0);
+
+        modelo.addRow(new Object[]{
+            numero,
+            binaria.isEncontrado() ? "SI" : "NO",
+            binaria.getPosicion(),
+            binaria.getComparaciones(),
+            binaria.getTiempo() + " ns"
+        });
+
+    }
+
+    else if (rbtcomparar.isSelected()) {
+
+        Busqueda_lineal lineal = new Busqueda_lineal();
+
+        Busqueda_binaria binaria = new Busqueda_binaria();
+
+        lineal.buscar(lista.getLista(), numero);
+
+        binaria.buscar(lista.getLista(), numero);
+
+        DefaultTableModel modeloL =
+                (DefaultTableModel) tablalineal.getModel();
+
+        DefaultTableModel modeloB =
+                (DefaultTableModel) tablabinaria.getModel();
+
+        modeloL.setRowCount(0);
+
+        modeloB.setRowCount(0);
+
+        modeloL.addRow(new Object[]{
+            numero,
+            lineal.isEncontrado() ? "SI" : "NO",
+            lineal.getPosicion(),
+            lineal.getComparaciones(),
+            lineal.getTiempo() + " ns"
+        });
+
+        modeloB.addRow(new Object[]{
+            numero,
+            binaria.isEncontrado() ? "SI" : "NO",
+            binaria.getPosicion(),
+            binaria.getComparaciones(),
+            binaria.getTiempo() + " ns"
+        });
+
+    }
+    else {
+
+        JOptionPane.showMessageDialog(this,
+                "SELECCIONE UN METODO DE BUSQUEDA OÑO.");
+    }
+
+    }//GEN-LAST:event_btnbuscarbtnpregun1ActionPerformed
+
+    private void btnlimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimpiarMouseEntered
         // TODO add your handling code here:
-        btnlimp1.setBorder(
+        btnlimpiar.setBorder(
             BorderFactory.createLineBorder(
                 new Color(0,0,0),2
             )
         );
-        btnlimp1.setBackground(new Color(45,45,45));
-    }//GEN-LAST:event_btnlimp1MouseEntered
+        btnlimpiar.setBackground(new Color(45,45,45));
+    }//GEN-LAST:event_btnlimpiarMouseEntered
 
-    private void btnlimp1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimp1MouseExited
+    private void btnlimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnlimpiarMouseExited
         // TODO add your handling code here:
-        btnlimp1.setBorder(null);
+        btnlimpiar.setBorder(null);
 
-    }//GEN-LAST:event_btnlimp1MouseExited
+    }//GEN-LAST:event_btnlimpiarMouseExited
 
-    private void btnlimp1btnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimp1btnpregun1ActionPerformed
+    private void btnlimpiarbtnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarbtnpregun1ActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_btnlimp1btnpregun1ActionPerformed
+    }//GEN-LAST:event_btnlimpiarbtnpregun1ActionPerformed
 
-    private void rtbquic1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rtbquic1ActionPerformed
+    private void rbtinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtinariaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rtbquic1ActionPerformed
+    }//GEN-LAST:event_rbtinariaActionPerformed
 
     private void btnmenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseEntered
         // TODO add your handling code here:
@@ -507,9 +672,9 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnarchiv;
-    private javax.swing.JButton btnlimp1;
+    private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmenu;
-    private javax.swing.JButton btnorden;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -523,14 +688,14 @@ public class PREGUNTA_2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel pre1;
-    private javax.swing.JRadioButton rbtshell;
-    private javax.swing.JRadioButton rtbquic;
-    private javax.swing.JRadioButton rtbquic1;
-    private javax.swing.JTable tabladerecho;
-    private javax.swing.JTable tabladerecho1;
+    private javax.swing.JRadioButton rbtcomparar;
+    private javax.swing.JRadioButton rbtinaria;
+    private javax.swing.JRadioButton rbtlineal;
+    private javax.swing.JTable tablabinaria;
+    private javax.swing.JTable tablalineal;
+    private javax.swing.JTextField txtarchivo;
+    private javax.swing.JTextField txtbuscar;
+    private javax.swing.JTextField txtresultado;
     // End of variables declaration//GEN-END:variables
 }

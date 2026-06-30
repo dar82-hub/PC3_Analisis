@@ -234,7 +234,7 @@ public class MENU extends javax.swing.JFrame {
         new Color(2,0,0),2
     )
 );
-     btnpregunt1.setBackground(new Color(45,45,45));
+     btnpregunt1.setBackground(new Color(0,0,0));
     }//GEN-LAST:event_btnpregunt1MouseEntered
 
     private void btnpregunt1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpregunt1MouseExited
