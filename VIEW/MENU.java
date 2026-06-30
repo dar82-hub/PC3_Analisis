@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package VIEW;
+import MODELO.MainFrame;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.dnd.DragGestureEvent;
@@ -37,6 +38,7 @@ public class MENU extends javax.swing.JFrame {
         btnpregunt1 = new javax.swing.JButton();
         btnini1 = new javax.swing.JButton();
         btnpregunt2 = new javax.swing.JButton();
+        btnpregunt3 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -138,6 +140,33 @@ public class MENU extends javax.swing.JFrame {
             }
         });
 
+        btnpregunt3.setBackground(new java.awt.Color(0, 0, 0));
+        btnpregunt3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btnpregunt3.setForeground(java.awt.SystemColor.activeCaption);
+        btnpregunt3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICON/BUSCA_ORIGINAL.png"))); // NOI18N
+        btnpregunt3.setText("PREGUNTA 3");
+        btnpregunt3.setAutoscrolls(true);
+        btnpregunt3.setContentAreaFilled(false);
+        btnpregunt3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnpregunt3.setDoubleBuffered(true);
+        btnpregunt3.setFocusCycleRoot(true);
+        btnpregunt3.setFocusPainted(false);
+        btnpregunt3.setFocusable(false);
+        btnpregunt3.setVerifyInputWhenFocusTarget(false);
+        btnpregunt3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnpregunt3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnpregunt3MouseExited(evt);
+            }
+        });
+        btnpregunt3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpregunt3btnpregun1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -154,6 +183,10 @@ public class MENU extends javax.swing.JFrame {
                             .addComponent(btnpregunt1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnpregunt2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnpregunt3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +197,9 @@ public class MENU extends javax.swing.JFrame {
                 .addComponent(btnpregunt1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(btnpregunt2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(btnpregunt3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 650));
@@ -286,6 +321,20 @@ public class MENU extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_btnpregunt2btnpregun1ActionPerformed
 
+    private void btnpregunt3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpregunt3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpregunt3MouseEntered
+
+    private void btnpregunt3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpregunt3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpregunt3MouseExited
+
+    private void btnpregunt3btnpregun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpregunt3btnpregun1ActionPerformed
+        // TODO add your handling code here:
+        MainFrame m = new  MainFrame();
+        m.setVisible(true);
+    }//GEN-LAST:event_btnpregunt3btnpregun1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,16 +343,13 @@ public class MENU extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnini1;
-    private javax.swing.JButton btnpregun1;
-    private javax.swing.JButton btnpregun2;
     private javax.swing.JButton btnpregunt1;
     private javax.swing.JButton btnpregunt2;
+    private javax.swing.JButton btnpregunt3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
